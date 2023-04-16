@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>happy bday</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body onclick="main()" style="background-position: center;background-size: cover; height:100vh;display:flex;justify-content: center;align-items: center; padding: 0;margin: 0;">
+    <model-viewer style="display: none; width: 100vw;height: 100vh;" id="MV" camera-orbit="45deg 55deg 2.5m" src="./dog.glb" alt="A 3D model"></model-viewer>
+    <h1 id="start" style="text-align: center; position: absolute; color: white;">Turn up the volume and press the screen</h1>
+    <audio id="aud"  style="display: none; background-color: black;color: black;"  controls src="./Happy Birthday Remix - Happy Birthday Song - Happy Birthday To You.mp3"></audio>
+    
+
+<script>
+
+
+document.body.style.background = "black"
+
+let main = () =>{
+    let name  = prompt("hey there, what's your name ?").toUpperCase()
+document.getElementById("start").innerText = `HAPPY BIRTHDAY ${name} !!!`
+document.getElementById('aud').play()
+setTimeout(() => {
+
+document.getElementById("MV").style.display="block"
+
+    setInterval(() => {
+    document.getElementById("MV").setAttribute("camera-orbit","90deg 55deg 2.5m")
+    setTimeout(() => {
+       document.getElementById("MV").setAttribute("camera-orbit","95deg 55deg 2.5m") 
+    }, 250);
+    
+}, 500);
+
+fetch('https://source.unsplash.com/1600x900/?birthday')
+  .then(data => {document.body.style.background = `url(${data.url})` 
+  })
+
+setInterval(() => {
+    fetch('https://source.unsplash.com/1600x900/?birthday')
+  .then(data => {document.body.style.background = `url(${data.url})` 
+console.log(data.url);
+})
+
+}, 15000);
+
+}, 23000);
+ 
+
+
+}
+
+
+</script>
+
+</body>
+</html>
